@@ -56,8 +56,7 @@ The `docd` tool runs as either:
     Optionally you can build it yourself:
 
     ```
-    cd docd
-    docker build -t docd .
+    docker build -t docd -f ./docd/Dockerfile .
     ```
 
 3.  via the command line.
@@ -88,6 +87,9 @@ The `docd` tool runs as either:
 
     $ # This will run on port 8000 and log each request
     $ docd -addr :8000 -log-level 1
+
+    $ # This will launch a temporary docker container interactively and log requests and payloads.
+    $ docker run --rm -it docd -log-level 2
 
 ## Example usage (code)
 
@@ -145,5 +147,5 @@ func main() {
 Alternatively, via a `curl`:
 
 ```
-curl -s -F input=your-file.pdf http://localhost:8888/convert
+curl --silent --form input=@your-file.pdf http://localhost:8888/convert
 ```

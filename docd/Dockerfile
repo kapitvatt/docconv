@@ -1,6 +1,9 @@
 FROM golang:1.19 AS build
 
 WORKDIR /app
+COPY go.* ./
+RUN go mod download
+
 COPY . ./
 RUN go build -o /bin/docd ./docd
 
